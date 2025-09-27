@@ -1,4 +1,4 @@
-#Equipe:
+# Equipe:
 
 - Gelson Teixeira de Andrade Neto
 - Higor Antônio dos Santos Benevenuto
