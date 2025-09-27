@@ -1,11 +1,67 @@
-GET http://localhost:3333
-###
-
-GET http://localhost:3333/produtos/1
-###
-
+### Marcas
 GET http://localhost:3333/marcas
 ###
-
 GET http://localhost:3333/marcas/1
+###
+DELETE http://localhost:3333/marcas/4
+### ---------------------------------------------------------------------
+
+
+### Produtos
+GET http://localhost:3333/produtos
+###
+GET http://localhost:3333/produtos/22
+###
+POST http://localhost:3333/produtos
+content-type: application/json
+
+{
+    "nome": "Nokia Tijolão",
+    "preco": 2,
+    "estoque": 1,
+    "idMarca": 1
+}
+### ---------------------------------------------------------------------
+
+### Clientes
+GET http://localhost:3333/clientes
+###
+GET http://localhost:3333/clientes/1
+###
+POST http://localhost:3333/clientes
+content-type: application/json
+
+{
+    "nome": "Higor Antonio",
+    "email": "higor@email.com",
+    "cidade": "Juiz de Fora"
+}
+### ---------------------------------------------------------------------
+
+
+### Pedidos
+GET http://localhost:3333/pedidos
+###
+GET http://localhost:3333/pedidos/1
+###
+GET http://localhost:3333/pedidos/cidade/cataguases
+###
+POST http://localhost:3333/pedidos
+content-type: application/json
+
+{
+    "idCliente": 1,
+    "produtos": [
+        {
+            "id": 1,
+            "quantidade": 2,
+            "preco": 9999
+        },
+        {
+            "id": 22,
+            "quantidade": 1,
+            "preco": 9599
+        }
+    ]
+}
 ###

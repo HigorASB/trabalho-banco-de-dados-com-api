@@ -24,7 +24,9 @@ exports.up = function (knex) {
           .integer("id_marca")
           .unsigned()
           .references("marcas.id")
-          .notNullable();
+          .notNullable()
+          .onUpdate("CASCADE")
+          .onDelete("CASCADE");
 
         table.timestamp("created_at").defaultTo(knex.fn.now());
         table.timestamp("updated_at").defaultTo(knex.fn.now());
@@ -34,8 +36,8 @@ exports.up = function (knex) {
     .then(() => {
       return knex.schema.createTable("clientes", (table) => {
         table.increments("id").primary();
-        table.string("nome", 100).notNullable();
-        table.string("email", 100).notNullable();
+        table.string("nome", 100).notNullable().unique();
+        table.string("email", 100).notNullable().unique();
         table.string("cidade", 100).notNullable();
 
         table.timestamp("created_at").defaultTo(knex.fn.now());
@@ -51,7 +53,9 @@ exports.up = function (knex) {
           .integer("id_cliente")
           .unsigned()
           .references("clientes.id")
-          .notNullable();
+          .notNullable()
+          .onUpdate("CASCADE")
+          .onDelete("CASCADE");
         table.decimal("valor_total", 8, 2).notNullable();
 
         table.timestamp("created_at").defaultTo(knex.fn.now());
@@ -65,12 +69,16 @@ exports.up = function (knex) {
           .integer("id_pedido")
           .unsigned()
           .references("pedidos.id")
-          .notNullable();
+          .notNullable()
+          .onUpdate("CASCADE")
+          .onDelete("CASCADE");
         table
           .integer("id_produto")
           .unsigned()
           .references("produtos.id")
-          .notNullable();
+          .notNullable()
+          .onUpdate("CASCADE")
+          .onDelete("CASCADE");
         table.integer("quantidade").notNullable();
         table.decimal("preco_unitario", 8, 2).notNullable();
 
